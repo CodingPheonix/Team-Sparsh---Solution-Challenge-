@@ -12,7 +12,7 @@ const Navbar = () => {
     return (
         <header className="bg-white shadow-md fixed w-full z-50">
             <div className="mx-auto px-4 md:px-6 lg:px-8 flex items-center justify-between h-16">
-                <a href="index.html" className="flex items-center">
+                <a href="/" className="flex items-center">
                     <Image src={logo} width={500} height={500} loading='lazy' alt="Logo" className='h-10 w-auto' />
                 </a>
 
