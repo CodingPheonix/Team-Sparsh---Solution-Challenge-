@@ -1,0 +1,37 @@
+[
+    {
+        "name": "Post Polygon",
+        "url": "http://localhost:8000/route/post_polygon",
+        "method": "POST",
+        "description": "Create a new polygon",
+        "request_body": "list of 4 coordinates",
+        "expected_responce": [
+            {
+                "status": 200,
+                "message": "Polygon created successfully",
+                "data": "polygon details"
+            },
+            {
+                "status": 400,
+                "message": "Bad request"
+            }
+        ]
+    },
+    {
+        "name": "Get all Polygon",
+        "url": "http://localhost:8000/route/get_all_polygons?user_id:id",
+        "method": "GET",
+        "description": "get all polygons for a single user",
+        "expected_responce": [
+            {
+                "status": 200,
+                "message": "Polygons fetched successfully",
+                "data": "list of polygons in array"
+            },
+            {
+                "status": 400,
+                "message": "Bad request"
+            }
+        ]
+    }
+]

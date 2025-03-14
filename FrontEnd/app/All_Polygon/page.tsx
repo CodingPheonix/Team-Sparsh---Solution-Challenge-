@@ -1,6 +1,14 @@
 import React, { JSX } from 'react'
 
 const page = (): JSX.Element => {
+
+    type area = {
+        id: number;
+        name: string;
+        area: number;
+        coordinates: { lat: number; lon: number }[];
+    }
+
     return (
         <>
             <div>
@@ -8,7 +16,7 @@ const page = (): JSX.Element => {
                     My Areas
                 </h2>
                 <div >
-
+                    
                 </div>
             </div>
         </>
