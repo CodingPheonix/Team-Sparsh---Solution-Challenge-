@@ -27,8 +27,8 @@ const Navbar: React.FC = () => {
                 <nav className="hidden lg:flex space-x-6 items-center">
                     <Link href="/" className="text-gray-700 hover:text-green-600">Home</Link>
                     <Link href="/about" className="text-gray-700 hover:text-green-600">About Us</Link>
-                    <Link href="/services" className="text-gray-700 hover:text-green-600">Our Services</Link>
-                    <Link href="/testimonials" className="text-gray-700 hover:text-green-600">Testimonials</Link>
+                    <Link href="/Create_Polygon" className="text-gray-700 hover:text-green-600">Create Areas</Link>
+                    <Link href="/All_Polygon" className="text-gray-700 hover:text-green-600">All Areas</Link>
                     <Link href="/blog" className="text-gray-700 hover:text-green-600">Blog</Link>
                     <Link href="/contact" className="text-gray-700 hover:text-green-600">Contact</Link>
                 </nav>

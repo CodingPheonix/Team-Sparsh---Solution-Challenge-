@@ -23,9 +23,9 @@ const HomeSections: React.FC<HomeSectionsProps> = ({ image, heading, paragraph, 
                     className='rounded-md md:block hidden m-2'
                 />
             </div>
-            <div className='flex flex-col justify-around items-start w-1/2 gap-4'>
+            <div className={`flex flex-col justify-around ${row ? 'items-start' : 'items-end'} w-1/2 gap-4`}>
                 <h1 className='text-4xl text-green-300'>{heading}</h1>
-                <p className='w-[95%]'>{paragraph}</p>
+                <p className='p-5'>{paragraph}</p>
                 <Link href={btn_link}>
                     <button className='px-6 py-3 rounded-3xl bg-green-400 text-white hover:bg-green-500 active:bg-green-600'>{btn_text}</button>
                 </Link>

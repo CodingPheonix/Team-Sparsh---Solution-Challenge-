@@ -4,7 +4,7 @@
         "url": "http://localhost:8000/route/post_polygon",
         "method": "POST",
         "description": "Create a new polygon",
-        "request_body": "list of 4 coordinates",
+        "request_body": ["list of 4 coordinates", "center point"],
         "expected_responce": [
             {
                 "status": 200,

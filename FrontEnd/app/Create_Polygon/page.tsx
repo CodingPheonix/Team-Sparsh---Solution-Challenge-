@@ -1,64 +1,54 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
+import 'dotenv/config';
+import 'leaflet/dist/leaflet.css';
 
-const Player = dynamic(() => import("@lordicon/react").then((mod) => mod.Player), {
-    ssr: false, // Disables server-side rendering for this component
-});
-import location from '../json/location.json'
+const MapContainer = dynamic(() => import("react-leaflet").then((mod) => mod.MapContainer), { ssr: false });
+const TileLayer = dynamic(() => import("react-leaflet").then((mod) => mod.TileLayer), { ssr: false });
+const Marker = dynamic(() => import("react-leaflet").then((mod) => mod.Marker), { ssr: false });
+const Popup = dynamic(() => import("react-leaflet").then((mod) => mod.Popup), { ssr: false });
 
 const Page: React.FC = () => {
-    // State List
     const [gotLocation, setGotLocation] = useState<boolean>(false);
+    const [coordinates, setCoordinates] = useState<[number, number] | null>(null);
+    const [mapIcon, setMapIcon] = useState<any>(null);
+    const [isClient, setIsClient] = useState<boolean>(false);
+    const [geoAvailable, setGeoAvailable] = useState<boolean>(false); // New state for geolocation support
 
-    // API Calls
-    const make_polygon = async (coord_list: { lat: number; lon: number }[]) => {
-        const response = await fetch("API_URL", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(coord_list)
-        });
-        const result = await response.json();
-        return { response, result };
-    };
-
-    // Functions
-    const getSquareCoordinates = (lat: number, lon: number, distance = 0.0045) => {
-        // Approximate degree difference for given distance (1 hectare ~ 100m)
-        const latDiff = distance;
-        const lonDiff = distance / Math.cos(lat * (Math.PI / 180));
-
-        return [
-            { lat: lat + latDiff, lon: lon - lonDiff }, // Top-left
-            { lat: lat + latDiff, lon: lon + lonDiff }, // Top-right
-            { lat: lat - latDiff, lon: lon + lonDiff }, // Bottom-right
-            { lat: lat - latDiff, lon: lon - lonDiff }  // Bottom-left
-        ];
-    };
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            setIsClient(true);
+            setGeoAvailable("geolocation" in navigator); // Check if geolocation is available
+            
+            import("leaflet").then((L) => {
+                setMapIcon(
+                    new L.Icon({
+                        iconUrl: "/location-01-stroke-rounded.svg",
+                        iconSize: [25, 41],
+                        iconAnchor: [12, 41],
+                    })
+                );
+            });
+        }
+    }, []);
 
     const get_location = () => {
-        setGotLocation((prev) => !prev);
-        if (typeof window !== "undefined" && "geolocation" in navigator) {
-            navigator.geolocation.getCurrentPosition(
-                (position) => {
-                    console.log("Latitude:", position.coords.latitude);
-                    console.log("Longitude:", position.coords.longitude);
-
-                    const coords = getSquareCoordinates(position.coords.latitude, position.coords.longitude);
-
-                    // Call backend API to create polygon
-                    make_polygon(coords);
-                },
-                (error) => {
-                    console.error("Error getting location:", error);
-                }
-            );
-        } else {
-            console.error("Geolocation is not supported or not available.");
+        if (!geoAvailable) {
+            console.error("Geolocation is not supported.");
+            return;
         }
+
+        setGotLocation(true);
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                setCoordinates([position.coords.latitude, position.coords.longitude]);
+            },
+            (error) => {
+                console.error("Error getting location:", error);
+            }
+        );
     };
 
     return (
@@ -68,35 +58,52 @@ const Page: React.FC = () => {
                 <div className="flex flex-col gap-5 bg-white/20 backdrop-blur-xl border border-green-500 shadow-2xl rounded-3xl p-8 md:w-96">
                     <span className='flex'>
                         <h1 className="text-3xl font-bold drop-shadow-lg">Enable Location</h1>
-                        <Player
-                            // ref={playerRef}
-                            icon={location}
-                        />
                     </span>
-                    {/* Input checkbox to allow location access  */}
                     <div className="flex items-center gap-3 p-3 rounded-lg cursor-pointer transition-all duration-300 hover:bg-white/30 hover:shadow-md">
-                        <input onClick={get_location} type="checkbox" name="enable_location" id="enable_location" className="w-7 h-7 accent-green-500 transition-all duration-300 hover:scale-110 hover:ring-2 hover:ring-green-400" />
-                        <label htmlFor="enable_location" className="text-lg font-medium cursor-pointer">Allow location access</label>
+                        <input onClick={get_location} type="checkbox" className="w-7 h-7 accent-green-500 transition-all duration-300 hover:scale-110 hover:ring-2 hover:ring-green-400" />
+                        <label className="text-lg font-medium cursor-pointer">Allow location access</label>
                     </div>
 
-                    {/* Display coordinates */}
-                    <div className={`min-h-10 w-full rounded-xl ${gotLocation ? "block" : "hidden"}`}>
-                        <p className='text-center'>{gotLocation ? "Thanks for your response!" : ""}</p>
-                        <button className='m-1 w-full border rounded-xl bg-green-400 text-white' type="submit">Submit</button>
-                    </div>
+                    {/* ✅ Show button/text only after checking geolocation availability */}
+                    {isClient && (
+                        geoAvailable ? (
+                            <button type="submit" className="w-full p-1 rounded-xl bg-green-500 text-white"> Submit </button>
+                        ) : (
+                            <p className="text-lg font-medium text-red-500">Please turn on location</p>
+                        )
+                    )}
                 </div>
 
-                {/* Map Image */}
-                <Image
-                    src={'/sample_map.jpg'}
-                    width={500}
-                    height={500}
-                    alt="Map preview"
-                    className="rounded-3xl shadow-xl mt-6 md:mt-0 md:ml-12 border-4 border-white/60"
-                />
+                {/* Map Display */}
+                <div className="w-1/2 h-[80vh] mt-6 md:mt-0 md:ml-12 border-4 border-white/60 shadow-xl rounded-3xl">
+                    {gotLocation && coordinates ? (
+                        <MapContainer
+                            center={coordinates}
+                            zoom={13}
+                            scrollWheelZoom={false}
+                            className="h-full w-full rounded-3xl z-10"
+                        >
+                            <TileLayer
+                                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                            />
+                            {mapIcon && (
+                                <Marker position={coordinates} icon={mapIcon}>
+                                    <Popup>Your location</Popup>
+                                </Marker>
+                            )}
+                        </MapContainer>
+                    ) : (
+                        <Image
+                            src={'/sample_map.jpg'}
+                            width={600}
+                            height={500}
+                            alt="Map preview"
+                            className="w-full h-full object-cover rounded-3xl"
+                        />
+                    )}
+                </div>
             </div>
-            {/* LordIcon script  */}
-            <script src="https://cdn.lordicon.com/lordicon.js"></script>
         </>
     );
 };
