@@ -3,7 +3,13 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
 
-const slides = [
+interface Slide {
+    src: string;
+    title: string;
+    desc: string;
+}
+
+const slides: Slide[] = [
     { src: "/hero_1.jpg", title: "Farming is the best solution of world's starvation", desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." },
     { src: "/hero_2.jpg", title: "Organic vegetables are good for health", desc: "Nam libero tempore, cum soluta nobis est eligendi optio." },
     { src: "/hero_3.jpg", title: "Providing Fresh Produce Every Single Day", desc: "Beatae vitae dicta sunt explicabo." },
@@ -11,8 +17,8 @@ const slides = [
     { src: "/hero_5.jpg", title: "Good Food For All", desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." }
 ];
 
-const Carousel = () => {
-    const [currentIndex, setCurrentIndex] = useState(0);
+const Carousel: React.FC = () => {
+    const [currentIndex, setCurrentIndex] = useState<number>(0);
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -32,7 +38,6 @@ const Carousel = () => {
     return (
         <div className="relative w-full mx-auto overflow-hidden h-[calc(100vh-4rem)]">
             <div className="relative w-auto h-full flex transition-transform duration-700 ease-in-out" style={{ transform: `translateX(-${currentIndex * 100}%)`}}>
-
                 {slides.map((slide, index) => (
                     <div key={index} className="w-full flex-shrink-0 relative h-full">
                         <Image
@@ -40,7 +45,8 @@ const Carousel = () => {
                             alt={slide.title}
                             width={1920}
                             height={1080}
-                            className="w-full h-full object-cover" />
+                            className="w-full h-full object-cover"
+                        />
                         <div className="absolute inset-0 bg-opacity-40 flex flex-col justify-center items-center text-center text-white p-4">
                             <h2 className="text-xl sm:text-3xl md:text-5xl font-bold max-w-[90%]">{slide.title}</h2>
                             <p className="mt-2 text-sm sm:text-lg max-w-[80%]">{slide.desc}</p>
