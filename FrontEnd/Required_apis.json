@@ -4,7 +4,10 @@
         "url": "http://localhost:8000/route/post_polygon",
         "method": "POST",
         "description": "Create a new polygon",
-        "request_body": ["list of 4 coordinates", "center point"],
+        "request_body": [
+            "list of 4 coordinates",
+            "center point"
+        ],
         "expected_responce": [
             {
                 "status": 200,
@@ -26,7 +29,26 @@
             {
                 "status": 200,
                 "message": "Polygons fetched successfully",
-                "data": "list of polygons in array"
+                "data": [
+                    {
+                        "id": 1,
+                        "name": "Central Park",
+                        "area": 3.41,
+                        "coordinates": {
+                            "lat": 40.7851,
+                            "lon": -73.9683
+                        }
+                    },
+                    {
+                        "id": 2,
+                        "name": "Golden Gate Park",
+                        "area": 4.12,
+                        "coordinates": {
+                            "lat": 37.7694,
+                            "lon": -122.4862
+                        }
+                    }
+                ]
             },
             {
                 "status": 400,

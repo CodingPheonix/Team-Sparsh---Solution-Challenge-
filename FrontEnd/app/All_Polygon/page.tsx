@@ -1,13 +1,13 @@
 "use client"
-import React, { JSX, useState } from 'react'
-import Image from 'next/image'
+import React, { JSX } from 'react'
+// import Image from 'next/image'
 import dynamic from 'next/dynamic';
 import 'leaflet/dist/leaflet.css';
 
 const MapContainer = dynamic(() => import("react-leaflet").then((mod) => mod.MapContainer), { ssr: false });
 const TileLayer = dynamic(() => import("react-leaflet").then((mod) => mod.TileLayer), { ssr: false });
-const Marker = dynamic(() => import("react-leaflet").then((mod) => mod.Marker), { ssr: false });
-const Popup = dynamic(() => import("react-leaflet").then((mod) => mod.Popup), { ssr: false });
+// const Marker = dynamic(() => import("react-leaflet").then((mod) => mod.Marker), { ssr: false });
+// const Popup = dynamic(() => import("react-leaflet").then((mod) => mod.Popup), { ssr: false });
 
 const page = (): JSX.Element => {
 
@@ -61,7 +61,7 @@ const page = (): JSX.Element => {
                     My Areas
                 </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                    {samplePolygons.map((polygon, index) => (
+                    {samplePolygons.map((polygon) => (
                         // Map each polygon to a card
                         <div key={polygon.id} className="bg-white shadow-lg rounded-xl overflow-hidden border min-h-[60vh] min-w-[20vw] hover:scale-105 transition-transform duration-300">
                             <div className="w-full h-40 object-cover">

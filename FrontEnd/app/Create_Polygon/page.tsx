@@ -13,7 +13,7 @@ const Popup = dynamic(() => import("react-leaflet").then((mod) => mod.Popup), { 
 const Page: React.FC = () => {
     const [gotLocation, setGotLocation] = useState<boolean>(false);
     const [coordinates, setCoordinates] = useState<[number, number] | null>(null);
-    const [mapIcon, setMapIcon] = useState<any>(null);
+    const [mapIcon, setMapIcon] = useState<L.Icon | null>(null);
     const [isClient, setIsClient] = useState<boolean>(false);
     const [geoAvailable, setGeoAvailable] = useState<boolean>(false); // New state for geolocation support
 
