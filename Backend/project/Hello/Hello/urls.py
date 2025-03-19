@@ -17,9 +17,10 @@ Including another URLconf
 
 
 from django.contrib import admin
-from django.urls import path
-from home import views  # Ensure 'home' is a valid Django app with a views.py file
+from django.urls import path, include
+ # Ensure 'home' is a valid Django app with a views.py file
 
 urlpatterns = [
-    path("", views.index, name='home'),  # Ensure 'index' is defined in views.py
+    # path("all_routes/", views.index, name='home'),  # Ensure 'index' is defined in views.py
+    path('', include('all_routes.urls'))
 ]
