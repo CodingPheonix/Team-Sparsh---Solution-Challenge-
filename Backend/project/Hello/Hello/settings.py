@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'all_routes'
+    'all_routes',
+    'rest_framework'
     # 'ML'
 ]
 

@@ -5,6 +5,7 @@ from . import views
 
 urlpatterns = [
     path('', views.temp, name='temp'),
-    path('test_get/', views.test_get_api, name='test-get')
-
+    path('test_get/', views.test_get_api, name='test-get'),
+    path('get_polygon/<str:poly_id>', views.get_polygon, name='get-polygon-details'),
+    path('get_polygon/', views.get_allPolygons, name='get-all-polygon-details'),
 ]
