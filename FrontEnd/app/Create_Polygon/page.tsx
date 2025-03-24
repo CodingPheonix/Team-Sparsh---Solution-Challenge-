@@ -5,35 +5,40 @@ import dynamic from "next/dynamic";
 import 'dotenv/config';
 import 'leaflet/dist/leaflet.css';
 
+// DYNAMIC IMPORTS
 const MapContainer = dynamic(() => import("react-leaflet").then((mod) => mod.MapContainer), { ssr: false });
 const TileLayer = dynamic(() => import("react-leaflet").then((mod) => mod.TileLayer), { ssr: false });
 const Marker = dynamic(() => import("react-leaflet").then((mod) => mod.Marker), { ssr: false });
 const Popup = dynamic(() => import("react-leaflet").then((mod) => mod.Popup), { ssr: false });
 
 const Page: React.FC = () => {
+
+    // TYPES
+    type Coordinates = [number, number];
+
+    // STATE LIST 
     const [gotLocation, setGotLocation] = useState<boolean>(false);
-    const [coordinates, setCoordinates] = useState<[number, number] | null>(null);
+    const [coordinates, setCoordinates] = useState<Coordinates | null>(null);
     const [mapIcon, setMapIcon] = useState<L.Icon | null>(null);
     const [isClient, setIsClient] = useState<boolean>(false);
-    const [geoAvailable, setGeoAvailable] = useState<boolean>(false); // New state for geolocation support
+    const [geoAvailable, setGeoAvailable] = useState<boolean>(false);
 
-    useEffect(() => {
-        if (typeof window !== "undefined") {
-            setIsClient(true);
-            setGeoAvailable("geolocation" in navigator); // Check if geolocation is available
-            
-            import("leaflet").then((L) => {
-                setMapIcon(
-                    new L.Icon({
-                        iconUrl: "/location-01-stroke-rounded.svg",
-                        iconSize: [25, 41],
-                        iconAnchor: [12, 41],
-                    })
-                );
-            });
-        }
-    }, []);
+    // API CALLS
+    const post_polygon = async (polygon_coordinates: Coordinates[]) => {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/create_polygon/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(polygon_coordinates)
+        });
+        const result = await response.json();
+        return { response, result };
+    };
 
+
+    // OTHER FUNCTIONS 
+    // Function to get user's current location
     const get_location = () => {
         if (!geoAvailable) {
             console.error("Geolocation is not supported.");
@@ -50,6 +55,67 @@ const Page: React.FC = () => {
             }
         );
     };
+    // Function to handle location submit
+    const handle_location_submit = async () => {
+        if (!coordinates) {
+            console.error("No coordinates found.");
+            return;
+        }
+        const polygon_coordinates = create_polygon();
+        if (!polygon_coordinates) {
+            console.error("Polygon creation failed.");
+            return;
+        }
+        const { response, result } = await post_polygon(polygon_coordinates);
+        console.log("Coordinates:", coordinates);
+        console.log("Response:", response);
+        console.log("Result:", result);
+    };
+
+
+    // Function to create polygon coordinate list based on the user's coordinates as the center
+    const create_polygon = (): Coordinates[] | undefined => {
+        if (!coordinates) {
+            console.error("No coordinates found.");
+            return;
+        }
+
+        // One hectare is 10,000 m².
+        // The side of a square with 10,000 m² is √10000 = 100 meters.
+        // Half the side length is 50 meters.
+        const halfSideMeters = 50;
+
+        // Convert 50 meters to degrees latitude (approx. 1° ≈ 111,320 meters).
+        const radius = halfSideMeters / 111320; // ≈ 0.000449 degrees
+
+        const polygon: Coordinates[] = [
+            [coordinates[0] + radius, coordinates[1] + radius],
+            [coordinates[0] - radius, coordinates[1] + radius],
+            [coordinates[0] - radius, coordinates[1] - radius],
+            [coordinates[0] + radius, coordinates[1] - radius],
+        ];
+
+        console.log("Polygon for one hectare:", polygon);
+        return polygon;
+    };
+
+    // USE EFFECT
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            setIsClient(true);
+            setGeoAvailable("geolocation" in navigator); // Check if geolocation is available
+
+            import("leaflet").then((L) => {
+                setMapIcon(
+                    new L.Icon({
+                        iconUrl: "/location-01-stroke-rounded.svg",
+                        iconSize: [25, 41],
+                        iconAnchor: [12, 41],
+                    })
+                );
+            });
+        }
+    }, []);
 
     return (
         <>
@@ -67,7 +133,7 @@ const Page: React.FC = () => {
                     {/* ✅ Show button/text only after checking geolocation availability */}
                     {isClient && (
                         geoAvailable ? (
-                            <button type="submit" className="w-full p-1 rounded-xl bg-green-500 text-white"> Submit </button>
+                            <button onClick={handle_location_submit} type="submit" className="w-full p-1 rounded-xl bg-green-500 text-white"> Submit </button>
                         ) : (
                             <p className="text-lg font-medium text-red-500">Please turn on location</p>
                         )
