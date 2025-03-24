@@ -53,9 +53,9 @@ const Page: React.FC = () => {
 
     return (
         <>
-            <div className="flex flex-col md:flex-row justify-center items-center min-h-[calc(100vh-4rem)] p-6">
+            <div className="flex flex-col-reverse md:flex-row md:gap-0 gap-4 justify-center items-center min-h-[calc(100vh-4rem)] p-6">
                 {/* Location Permission Card */}
-                <div className="flex flex-col gap-5 bg-white/20 backdrop-blur-xl border border-green-500 shadow-2xl rounded-3xl p-8 md:w-96">
+                <div className="flex flex-col gap-5 bg-white/20 backdrop-blur-xl border border-green-500 shadow-2xl rounded-3xl p-8 md:w-96 w-full">
                     <span className='flex'>
                         <h1 className="text-3xl font-bold drop-shadow-lg">Enable Location</h1>
                     </span>
@@ -75,7 +75,7 @@ const Page: React.FC = () => {
                 </div>
 
                 {/* Map Display */}
-                <div className="w-1/2 h-[80vh] mt-6 md:mt-0 md:ml-12 border-4 border-white/60 shadow-xl rounded-3xl">
+                <div className="md:w-1/2 w-full h-[80vh] mt-6 md:mt-0 md:ml-12 border-4 border-white/60 shadow-xl rounded-3xl">
                     {gotLocation && coordinates ? (
                         <MapContainer
                             center={coordinates}

@@ -10,11 +10,11 @@ interface Slide {
 }
 
 const slides: Slide[] = [
-    { src: "/hero_1.jpg", title: "Farming is the best solution of world's starvation", desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." },
-    { src: "/hero_2.jpg", title: "Organic vegetables are good for health", desc: "Nam libero tempore, cum soluta nobis est eligendi optio." },
-    { src: "/hero_3.jpg", title: "Providing Fresh Produce Every Single Day", desc: "Beatae vitae dicta sunt explicabo." },
-    { src: "/hero_4.jpg", title: "Farming as a Passion", desc: "Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet." },
-    { src: "/hero_5.jpg", title: "Good Food For All", desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." }
+    { src: "/hero_1.jpg", title: "AI-Powered Soil Analysis", desc: "Uses satellite imagery to assess soil moisture, nutrient levels, and composition for optimal crop recommendations." },
+    { src: "/hero_2.jpg", title: "Smart Crop & Fertilizer Recommendations", desc: "Suggests the best crops to grow based on soil conditions and provides precise fertilizer and water usage guidance." },
+    { src: "/hero_3.jpg", title: "Real-Time Weather Insights & Alerts", desc: "Integrates weather data to help farmers plan ahead and take precautions against climate-related risks." },
+    { src: "/hero_4.jpg", title: "Sustainable Resource Management", desc: "Optimizes water and fertilizer usage to reduce waste and improve environmental sustainability." },
+    { src: "/hero_5.jpg", title: "Farmer-Friendly Digital Dashboard", desc: "Provides an intuitive interface for farmers to access insights, recommendations, and alerts in a simple, actionable format." }
 ];
 
 const Carousel: React.FC = () => {

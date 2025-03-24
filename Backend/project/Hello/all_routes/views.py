@@ -2,11 +2,11 @@
 from django.shortcuts import render, HttpResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .serializers import polygonSerializer
-from rest_framework import status
-from .models import Polygon
+# from .serializers import polygonSerializer
+# from rest_framework import status
+# from .models import Polygon
 from . import polygon
-from . import models
+# from . import models
 
 # Create your views here.
 def temp(request):
@@ -72,5 +72,7 @@ def delete_polygon(requests, poly_id):
     return Response({"message": "Polygon could not be created Successfully", "status":404})
 
 
-# APIS FOR WEATHER 
-
+# TEST FRONTEND CONNECTION
+@api_view(['GET'])
+def temporary(requests):
+    return Response({'data': "backend achieved"})

@@ -29,8 +29,7 @@ const Navbar: React.FC = () => {
                     <Link href="/about" className="text-gray-700 hover:text-green-600">About Us</Link>
                     <Link href="/Create_Polygon" className="text-gray-700 hover:text-green-600">Create Areas</Link>
                     <Link href="/All_Polygon" className="text-gray-700 hover:text-green-600">All Areas</Link>
-                    <Link href="/blog" className="text-gray-700 hover:text-green-600">Blog</Link>
-                    <Link href="/contact" className="text-gray-700 hover:text-green-600">Contact</Link>
+                    <Link href="/Dashboard" className="text-gray-700 hover:text-green-600">Dashboard</Link>
                 </nav>
 
                 <div className="hidden lg:block pr-4">
@@ -43,10 +42,9 @@ const Navbar: React.FC = () => {
                 <ul className="space-y-4 p-4 flex flex-col items-center">
                     <li><Link href="/" className="block text-gray-700 hover:text-green-600 hover:border hover:shadow-md">Home</Link></li>
                     <li><Link href="/about" className="block text-gray-700 hover:text-green-600 hover:border hover:shadow-md">About Us</Link></li>
-                    <li><Link href="/services" className="block text-gray-700 hover:text-green-600 hover:border hover:shadow-md">Our Services</Link></li>
-                    <li><Link href="/testimonials" className="block text-gray-700 hover:text-green-600 hover:border hover:shadow-md">Testimonials</Link></li>
-                    <li><Link href="/blog" className="block text-gray-700 hover:text-green-600 hover:border hover:shadow-md">Blog</Link></li>
-                    <li><Link href="/contact" className="block text-gray-700 hover:text-green-600 hover:border hover:shadow-md">Contact</Link></li>
+                    <li><Link href="/Create_Polygon" className="block text-gray-700 hover:text-green-600 hover:border hover:shadow-md">Create Areas</Link></li>
+                    <li><Link href="/All_Polygon" className="block text-gray-700 hover:text-green-600 hover:border hover:shadow-md">All Areas</Link></li>
+                    <li><Link href="/Dashboard" className="block text-gray-700 hover:text-green-600 hover:border hover:shadow-md">Dashboard</Link></li>
                     <li><button className="hover:bg-green-500 bg-green-400 active:bg-green-600 py-2 px-4 rounded-md text-white">Sign In</button></li>
                 </ul>
             </nav>
