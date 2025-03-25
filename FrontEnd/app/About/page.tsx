@@ -19,7 +19,7 @@ const page = (): JSX.Element => {
       name: 'Ranit Das',
       role: 'Backend Developer',
       course: 'B.Tech Computer Science',
-      image: './Ranit_Das_Profile.jpg',
+      image: './Ranit_das_profile.jpg',
     },
     {
       name: 'Sohom Das',
