@@ -26,14 +26,14 @@ const Navbar: React.FC = () => {
 
                 <nav className="hidden lg:flex space-x-6 items-center">
                     <Link href="/" className="text-gray-700 hover:text-green-600">Home</Link>
-                    <Link href="/about" className="text-gray-700 hover:text-green-600">About Us</Link>
+                    <Link href="/About" className="text-gray-700 hover:text-green-600">About Us</Link>
                     <Link href="/Create_Polygon" className="text-gray-700 hover:text-green-600">Create Areas</Link>
                     <Link href="/All_Polygon" className="text-gray-700 hover:text-green-600">All Areas</Link>
                     <Link href="/Dashboard" className="text-gray-700 hover:text-green-600">Dashboard</Link>
                 </nav>
 
                 <div className="hidden lg:block pr-4">
-                    <button className="hover:bg-green-500 bg-green-400 active:bg-green-600 py-2 px-4 rounded-md text-white">Sign In</button>
+                    <button disabled={true} className="hover:bg-green-500 bg-green-400 active:bg-green-600 py-2 px-4 rounded-md text-slate-300">Sign In</button>
                 </div>
             </div>
 
@@ -41,7 +41,7 @@ const Navbar: React.FC = () => {
             <nav id="mobile-menu" className={`lg:hidden fixed top-16 left-0 w-full bg-white shadow-md ${isHidden ? 'hidden' : 'block'}`}>
                 <ul className="space-y-4 p-4 flex flex-col items-center">
                     <li><Link href="/" className="block text-gray-700 hover:text-green-600 hover:border hover:shadow-md">Home</Link></li>
-                    <li><Link href="/about" className="block text-gray-700 hover:text-green-600 hover:border hover:shadow-md">About Us</Link></li>
+                    <li><Link href="/About" className="block text-gray-700 hover:text-green-600 hover:border hover:shadow-md">About Us</Link></li>
                     <li><Link href="/Create_Polygon" className="block text-gray-700 hover:text-green-600 hover:border hover:shadow-md">Create Areas</Link></li>
                     <li><Link href="/All_Polygon" className="block text-gray-700 hover:text-green-600 hover:border hover:shadow-md">All Areas</Link></li>
                     <li><Link href="/Dashboard" className="block text-gray-700 hover:text-green-600 hover:border hover:shadow-md">Dashboard</Link></li>

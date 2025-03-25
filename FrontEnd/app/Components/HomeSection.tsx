@@ -24,10 +24,10 @@ const HomeSections: React.FC<HomeSectionsProps> = ({ image, heading, paragraph, 
                 />
             </div>
             <div className={`flex flex-col justify-around ${row ? 'items-start' : 'items-end'} w-1/2 gap-4`}>
-                <h1 className='text-4xl text-green-300'>{heading}</h1>
+                <h1 className='text-4xl font-semibold text-green-300'>{heading}</h1>
                 <p className='p-5'>{paragraph}</p>
                 <Link href={btn_link}>
-                    <button className='px-6 py-3 rounded-3xl bg-green-400 text-white hover:bg-green-500 active:bg-green-600'>{btn_text}</button>
+                    <button className='px-6 py-3 rounded-3xl bg-green-400 text-white hover:bg-green-500 active:bg-green-600 font-semibold text-lg'>{btn_text}</button>
                 </Link>
             </div>
         </div>
