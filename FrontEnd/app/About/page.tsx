@@ -7,25 +7,25 @@ const page = (): JSX.Element => {
       role: 'Database Administrator',
       special_role: 'Team Leader',
       course: 'B.Tech Computer Science',
-      image: '/Puskar_Kumar_Prasad_Profile.jpg',
+      image: './Puskar_Kumar_Prasad_Profile.jpg',
     },
     {
       name: 'Sayan Biswas',
       role: 'Frontend Developer',
       course: 'B.Tech Computer Science',
-      image: '/Sayan_Biswas_Profile.jpg',
+      image: './Sayan_Biswas_Profile.jpg',
     },
     {
       name: 'Ranit Das',
       role: 'Backend Developer',
       course: 'B.Tech Computer Science',
-      image: '/Ranit_Das_Profile.jpg',
+      image: './Ranit_Das_Profile.jpg',
     },
     {
       name: 'Sohom Das',
       role: 'ML Engineer',
       course: 'B.Tech Computer Science',
-      image: '/Sohom_Das_Profile.jpg',
+      image: './Sohom_Das_Profile.jpg',
     },
   ];
 
