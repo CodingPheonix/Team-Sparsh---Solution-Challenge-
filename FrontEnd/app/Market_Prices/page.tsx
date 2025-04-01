@@ -61,7 +61,7 @@ import News_card from '../Components/News_card';
 import news_data from '../json/news.json';
 
 const Page: React.FC = () => {
-  const [initdata, setInitdata] = useState({
+  const [initdata] = useState({
     slno: 'Sl.no.',
     crop: 'Crop',
     location: 'Location',
