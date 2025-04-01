@@ -1,4 +1,5 @@
 import React, { JSX } from 'react';
+import Image from 'next/image';
 
 const page = (): JSX.Element => {
   const teamMembers = [
@@ -7,25 +8,25 @@ const page = (): JSX.Element => {
       role: 'Database Administrator',
       special_role: 'Team Leader',
       course: 'B.Tech Computer Science',
-      image: './Puskar_Kumar_Prasad_Profile.jpg',
+      image: '/Puskar_Kumar_Prasad_Profile.jpg',
     },
     {
       name: 'Sayan Biswas',
       role: 'Frontend Developer',
       course: 'B.Tech Computer Science',
-      image: './Sayan_Biswas_Profile.jpg',
+      image: '/Sayan_Biswas_Profile.jpg',
     },
     {
       name: 'Ranit Das',
       role: 'Backend Developer',
       course: 'B.Tech Computer Science',
-      image: './Ranit_das_profile.jpg',
+      image: '/Ranit_das_profile.jpg',
     },
     {
       name: 'Sohom Das',
       role: 'ML Engineer',
       course: 'B.Tech Computer Science',
-      image: './Sohom_Das_Profile.jpg',
+      image: '/Sohom_Das_Profile.jpg',
     },
   ];
 
@@ -35,8 +36,16 @@ const page = (): JSX.Element => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {teamMembers.map((member, index) => (
           <div key={index} className="bg-white p-6 rounded-lg flex flex-col items-center">
-            <img
+            {/* <img
               src={member.image}
+              alt={member.name}
+              className="w-24 h-24 rounded-full object-cover mb-4"
+            /> */}
+            <Image
+              src={member.image}
+              width={500}
+              height={500}
+              loading='lazy'
               alt={member.name}
               className="w-24 h-24 rounded-full object-cover mb-4"
             />

@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { GiHamburgerMenu } from "react-icons/gi";
 import { RxCross1 } from "react-icons/rx";
+import Logo from './Logo';
 
 const Navbar: React.FC = () => {
     const [isHidden, setIsHidden] = useState<boolean>(true);
@@ -12,7 +13,7 @@ const Navbar: React.FC = () => {
         <header className="bg-white shadow-md fixed w-full z-50">
             <div className="mx-auto px-4 md:px-6 lg:px-8 flex items-center justify-between h-16">
                 <Link href="/" className="flex items-center">
-                    <Image src={'/logo.png'} width={500} height={500} loading='lazy' alt="Logo" className='h-10 w-auto' />
+                    <Logo />
                 </Link>
 
                 {/* Mobile menu button */}
@@ -30,6 +31,7 @@ const Navbar: React.FC = () => {
                     <Link href="/Create_Polygon" className="text-gray-700 hover:text-green-600">Create Areas</Link>
                     <Link href="/All_Polygon" className="text-gray-700 hover:text-green-600">All Areas</Link>
                     <Link href="/Dashboard" className="text-gray-700 hover:text-green-600">Dashboard</Link>
+                    <Link href="/Market_Prices" className="text-gray-700 hover:text-green-600">Market Prices</Link>
                 </nav>
 
                 <div className="hidden lg:block pr-4">
@@ -45,6 +47,7 @@ const Navbar: React.FC = () => {
                     <li><Link href="/Create_Polygon" className="block text-gray-700 hover:text-green-600 hover:border hover:shadow-md">Create Areas</Link></li>
                     <li><Link href="/All_Polygon" className="block text-gray-700 hover:text-green-600 hover:border hover:shadow-md">All Areas</Link></li>
                     <li><Link href="/Dashboard" className="block text-gray-700 hover:text-green-600 hover:border hover:shadow-md">Dashboard</Link></li>
+                    <li><Link href="/Market_Prices" className="block text-gray-700 hover:text-green-600 hover:border hover:shadow-md">Market Prices</Link></li>
                     <li><button className="hover:bg-green-500 bg-green-400 active:bg-green-600 py-2 px-4 rounded-md text-white">Sign In</button></li>
                 </ul>
             </nav>

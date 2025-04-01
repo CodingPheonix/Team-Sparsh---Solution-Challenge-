@@ -70,7 +70,7 @@ const Page: React.FC = () => {
   });
 
   return (
-    <div className='flex flex-col md:flex-row bg-green-50 min-h-[calc(100vh-20rem)] p-2 md:p-5'>
+    <div className='flex flex-col md:flex-row bg-green-100 p-2 md:p-5'>
       {/* Market Data Section */}
       <div className='md:w-3/4 w-full bg-white p-4 rounded-lg shadow-lg'>
         <h1 className='font-bold text-3xl text-green-700 m-3'>Market Price Indexes</h1>
