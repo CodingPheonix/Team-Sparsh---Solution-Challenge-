@@ -81,7 +81,7 @@ const Page: React.FC = () => {
           {market_prices.map((data, index) => (
             <Market_price_card
               key={index}
-              slno={`${index}`}
+              slno={`${index+1}`}
               crop={data.crop}
               location={data.location}
               price={data.marketPrice}
