@@ -1,0 +1,107 @@
+[
+    {
+        "crop": "Tomato",
+        "location": "Mumbai",
+        "marketPrice": "30.50",
+        "unit": "per kg",
+        "source": "Agmarknet"
+    },
+    {
+        "crop": "Onion",
+        "location": "Delhi",
+        "marketPrice": "45.00",
+        "unit": "per kg",
+        "source": "Agmarknet"
+    },
+    {
+        "crop": "Potato",
+        "location": "Kolkata",
+        "marketPrice": "25.00",
+        "unit": "per kg",
+        "source": "Kisandeals"
+    },
+    {
+        "crop": "Brinjal",
+        "location": "Bangalore",
+        "marketPrice": "20.00",
+        "unit": "per kg",
+        "source": "Kisandeals"
+    },
+    {
+        "crop": "Rice",
+        "location": "Punjab",
+        "marketPrice": "1800.00",
+        "unit": "per quintal",
+        "source": "Mandiprices"
+    },
+    {
+        "crop": "Wheat",
+        "location": "Haryana",
+        "marketPrice": "1700.00",
+        "unit": "per quintal",
+        "source": "Mandiprices"
+    },
+    {
+        "crop": "Maize",
+        "location": "Maharashtra",
+        "marketPrice": "1600.00",
+        "unit": "per quintal",
+        "source": "Agmarknet"
+    },
+    {
+        "crop": "Sugarcane",
+        "location": "Bihar",
+        "marketPrice": "3100.00",
+        "unit": "per quintal",
+        "source": "Kisandeals"
+    },
+    {
+        "crop": "Cotton",
+        "location": "Gujarat",
+        "marketPrice": "3500.00",
+        "unit": "per quintal",
+        "source": "Mandiprices"
+    },
+    {
+        "crop": "Soybean",
+        "location": "Rajasthan",
+        "marketPrice": "2100.00",
+        "unit": "per quintal",
+        "source": "Agmarknet"
+    },
+    {
+        "crop": "Cucumber",
+        "location": "Chennai",
+        "marketPrice": "28.00",
+        "unit": "per kg",
+        "source": "Kisandeals"
+    },
+    {
+        "crop": "Capsicum",
+        "location": "Hyderabad",
+        "marketPrice": "35.00",
+        "unit": "per kg",
+        "source": "Mandiprices"
+    },
+    {
+        "crop": "Carrot",
+        "location": "Lucknow",
+        "marketPrice": "22.00",
+        "unit": "per kg",
+        "source": "Agmarknet"
+    },
+    {
+        "crop": "Broccoli",
+        "location": "Pune",
+        "marketPrice": "40.00",
+        "unit": "per kg",
+        "source": "Kisandeals"
+    },
+    {
+        "crop": "Spinach",
+        "location": "Chandigarh",
+        "marketPrice": "15.00",
+        "unit": "per kg",
+        "source": "Mandiprices"
+    }
+]

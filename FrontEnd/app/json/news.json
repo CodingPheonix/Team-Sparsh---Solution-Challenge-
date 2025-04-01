@@ -1,0 +1,37 @@
+[
+    {
+        "headline": "Government Announces New Agricultural Subsidies",
+        "location": "New Delhi",
+        "publishedDate": "2025-03-31",
+        "source": "Reuters",
+        "content": "The government unveiled a series of measures to support farmers, including direct cash transfers and enhanced irrigation facilities to improve crop yields."
+    },
+    {
+        "headline": "Record Crop Yields Expected Amid Favorable Weather",
+        "location": "Punjab",
+        "publishedDate": "2025-03-30",
+        "source": "BBC News",
+        "content": "Experts forecast record harvests this season due to unusually favorable weather conditions, promising a positive outlook for the agricultural sector."
+    },
+    {
+        "headline": "Farmers Protest Against Rising Input Costs",
+        "location": "Mumbai",
+        "publishedDate": "2025-03-29",
+        "source": "The Economic Times",
+        "content": "Farmers have gathered in protest, demanding government intervention to curb escalating costs of seeds, fertilizers, and other essential inputs."
+    },
+    {
+        "headline": "Innovative Farming Techniques Boost Productivity",
+        "location": "Hyderabad",
+        "publishedDate": "2025-03-28",
+        "source": "Al Jazeera",
+        "content": "New technological innovations and modern farming practices are leading to significant productivity gains in the region."
+    },
+    {
+        "headline": "Global Trade Talks Impact Local Agriculture",
+        "location": "Kolkata",
+        "publishedDate": "2025-03-27",
+        "source": "CNN",
+        "content": "Ongoing global trade negotiations are expected to affect local agricultural exports, with farmers seeking assurances on pricing and market access."
+    }
+]
