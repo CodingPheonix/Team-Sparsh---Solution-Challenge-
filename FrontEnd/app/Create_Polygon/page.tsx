@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
+import { v4 as uuidv4 } from 'uuid';
 import 'dotenv/config';
 import 'leaflet/dist/leaflet.css';
 
@@ -30,12 +31,21 @@ const Page: React.FC = () => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(polygon_coordinates)
+            body: JSON.stringify({
+                "name": `Polygon ${uuidv4()}`,
+                "geo_json": {
+                    "type": "Feature",
+                    "properties": {},
+                    "geometry": {
+                        "type": "Polygon",
+                        "coordinates": [polygon_coordinates]
+                    }
+                }
+            })
         });
         const result = await response.json();
         return { response, result };
     };
-
 
     // OTHER FUNCTIONS 
     // Function to get user's current location
@@ -79,25 +89,22 @@ const Page: React.FC = () => {
             console.error("No coordinates found.");
             return;
         }
-
-        // One hectare is 10,000 m².
-        // The side of a square with 10,000 m² is √10000 = 100 meters.
-        // Half the side length is 50 meters.
-        const halfSideMeters = 50;
-
-        // Convert 50 meters to degrees latitude (approx. 1° ≈ 111,320 meters).
-        const radius = halfSideMeters / 111320; // ≈ 0.000449 degrees
-
+    
+        const halfSideMeters = 1000; 
+        const radius = halfSideMeters / 111320; // degrees
+    
         const polygon: Coordinates[] = [
             [coordinates[0] + radius, coordinates[1] + radius],
             [coordinates[0] - radius, coordinates[1] + radius],
             [coordinates[0] - radius, coordinates[1] - radius],
             [coordinates[0] + radius, coordinates[1] - radius],
+            [coordinates[0] + radius, coordinates[1] + radius] // close the loop
         ];
-
-        console.log("Polygon for one hectare:", polygon);
+    
+        console.log("Polygon for ~4 hectares:", polygon);
         return polygon;
     };
+    
 
     // USE EFFECT
     useEffect(() => {

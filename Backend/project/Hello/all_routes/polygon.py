@@ -1,33 +1,50 @@
 import requests
-# from django.http import JsonResponse
+from .serializers import polygonSerializer
+import os
+from dotenv import load_dotenv
 
-api_key = "695a985876ca3091f253d1b7d3f17bd1"
+load_dotenv()
 
-# def create_polygon(body):
-#     # agromonitoring url to cbreate polygon 
-    
-#     url = f"http://api.agromonitoring.com/agro/1.0/polygons?appid={api_key}"
-    
-#     # create a responce
-#     response = requests.get(url, data=body)
-    
-#     if response.status_code==200:
-#         return response.json()
-#     else:
-#         return {'message':"data not found"}
+api_key = os.getenv('AGRO_API_KEY')
 
+#to create a new polygon 
+def create_my_polygon(body):
+    url = f"http://api.agromonitoring.com/agro/1.0/polygons?appid={api_key}&duplicated=true"
 
-#to get info from one polygon 
-def info_polygon(body1):
-    url = f"http://api.agromonitoring.com/agro/1.0/polygons?appid={api_key}"
-    
-    # create a response
-    response = requests.post(url, data=body1)
-    
-    if response.status_code==200:
-        return response.json()
+    # Make sure you're sending JSON
+    response = requests.post(url, json=body)
+
+    if response.ok:
+        result = response.json()
+
+        new_polygon = polygonSerializer(data={
+            'name': result['name'],
+            'user_id': result['user_id'],
+            'poly_id': result['id'],
+            'center': str(result['center']),
+            'area': result['area'],
+        })
+
+        if new_polygon.is_valid():
+            new_polygon.save()
+            return {
+                'status': 200,
+                'message': "A new Polygon is created",
+                'data': new_polygon.data
+            }
+        else:
+            return {
+                'status': 400,
+                'message': "Invalid polygon data",
+                'data': new_polygon.errors
+            }
     else:
-        return {'message':"searching data is not found"}
+        return {
+            'status': response.status_code,
+            'message': "Polygon creation failed from Agro API",
+            'data': response.text  
+        }
+
 
 # to update the polygon
 def update_polygon():
